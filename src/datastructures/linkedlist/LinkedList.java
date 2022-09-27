@@ -171,4 +171,27 @@ public class LinkedList {
 		
 		return false;
 	}
+
+	public Node remove(int index) {
+		
+		if (index == 0) {
+			return removeFirst();
+		}
+		
+		if (index == (length - 1)) {
+			return removeLast();
+		}
+		
+		if (index > 0 && index < (length - 1)) {
+			Node toRemoveNode = get(index);
+			Node oneNodeBefore = get(index - 1);
+			oneNodeBefore.next = toRemoveNode.next;
+			toRemoveNode.next = null;
+			length--;
+			return toRemoveNode;
+		}
+		
+		
+		return null;
+	}
 }
