@@ -99,4 +99,25 @@ public class LinkedList {
 		}
 		length++; 
 	}
+
+	public Node removeFirst() {
+		Node toRemoveNode = head;
+		
+		//Check if there is item in the LinkedList
+		if (head != null) {
+			length--;
+			//Check if there is more than 1 item
+			if (head.next != null) {
+				head = head.next;
+				return toRemoveNode;
+			}
+			else {
+				head = null;
+				tail = null;
+				return toRemoveNode;
+			}
+		}
+		
+		return null;
+	}
 }

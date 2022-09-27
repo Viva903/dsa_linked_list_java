@@ -42,6 +42,17 @@ public class Main {
         System.out.println("\nLinked List:");
         myLinkedList.printList();
 		
+        
+        System.out.println("\n\nAfter removeFirst():");
+        // (2) Items - Returns 2 Node
+        System.out.println(myLinkedList.removeFirst().value);
+        // (1) Item - Returns 1 Node
+        System.out.println(myLinkedList.removeFirst().value);
+        // (0) Items - Returns null
+        System.out.println(myLinkedList.removeFirst().value);
+        System.out.println(myLinkedList.removeFirst());
+        
+        
     }
 
 }
