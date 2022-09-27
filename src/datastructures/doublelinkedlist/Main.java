@@ -63,6 +63,9 @@ public class Main {
         myDLL.printList();
         System.out.println("\nget():");
         System.out.println(myDLL.get(3).value);
+        System.out.println(myDLL.get(2).value);
+        System.out.println(myDLL.get(1).value);
+        System.out.println(myDLL.get(0).value);
 
         System.out.println("DLL before set():");
         myDLL.printList();

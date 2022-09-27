@@ -91,22 +91,21 @@ public class DoublyLinkedList {
 	}
 
 	public Node removeFirst() {
+		if (length == 0)
+			return null;
 
+		Node temp = head;
 		if (length == 1) {
-			Node temp = head;
 			head = null;
 			tail = null;
-			length--;
-			return temp;
 		} else if (length > 1) {
-			Node temp = head;
 			head = head.next;
 			temp.next = null;
 			head.previous = null;
-			length--;
-			return temp;
 		}
-		return null;
+
+		length--;
+		return temp;
 	}
 
 	public Node get(int index) {
@@ -114,9 +113,17 @@ public class DoublyLinkedList {
 		if (index < length && index >= 0) {
 			Node temp = head;
 
-			for (int i = 0; i < index; i++) {
-				temp = temp.next;
+			if (index < length / 2) {
+				for (int i = 0; i < index; i++) {
+					temp = temp.next;
+				}
+			} else {
+				temp = tail;
+				for (int i = (length - 1); i > index; i--) {
+					temp = temp.previous;
+				}
 			}
+
 			return temp;
 		}
 
@@ -135,36 +142,53 @@ public class DoublyLinkedList {
 	}
 
 	public boolean insert(int index, int value) {
+		if (index < 0 || index > length) {
+			return false;
+		}
+
+		if (index == 0) {
+			prepend(value);
+			return true;
+		}
+
+		if (index == length) {
+			append(value);
+			return true;
+		}
 
 		Node newNode = new Node(value);
-		if (length == 0 || index == 0) {
-			prepend(value);
-		} else if (length > 1) {
-			Node before = get(index - 1);
-			Node after = get(index);
-			newNode.previous = before;
-			newNode.next = after;
-			before.next = newNode;
-			after.previous = newNode;
-		}
+		Node before = get(index - 1);
+		Node after = get(index);
+		newNode.previous = before;
+		newNode.next = after;
+		before.next = newNode;
+		after.previous = newNode;
+
 		length++;
 		return false;
 	}
 
 	public Node remove(int index) {
-		if (length != 0 && index == 0) {
+		if (index < 0 && index >= length)
+			return null;
+
+		if (index == 0) {
 			return removeFirst();
-		} 
-		
+		}
+
 		if ((length - 1) == index) {
 			return removeLast();
-		} else {
-			Node toRemoveNode = get(index);
-			toRemoveNode.previous.next = toRemoveNode.next;
-			toRemoveNode.next.previous = toRemoveNode.previous;
-			length--;
-			return toRemoveNode;
 		}
+
+		Node toRemoveNode = get(index);
+		toRemoveNode.previous.next = toRemoveNode.next;
+		toRemoveNode.next.previous = toRemoveNode.previous;
+		toRemoveNode.next = null;
+		toRemoveNode.previous = null;
+		
+		length--;
+		return toRemoveNode;
+
 	}
 
 }
