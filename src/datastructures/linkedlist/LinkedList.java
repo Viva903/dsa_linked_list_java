@@ -1,8 +1,7 @@
 // THIS CODE GOES IN YOUR LINKEDLIST CLASS:
 // ----------------------------------------
-      
-package datastructures.linkedlist;
 
+package datastructures.linkedlist;
 
 public class LinkedList {
 	Node head;
@@ -10,47 +9,47 @@ public class LinkedList {
 	int length;
 
 	// CREATE CLASS VARIABLES, NODE CLASS, AND CONSTRUCTOR HERE //
-	//                                                          //
-	//                                                          //
-	//                                                          //
-	//                                                          //
+	// //
+	// //
+	// //
+	// //
 	//////////////////////////////////////////////////////////////
 	class Node {
 		int value;
 		Node next;
-		
+
 		Node(int value) {
 			this.value = value;
 		}
 	}
-	
+
 	public LinkedList(int value) {
 		// TODO Auto-generated constructor stub
 		Node newNode = new Node(value);
 		head = newNode;
 		tail = newNode;
-		length=1;
+		length = 1;
 	}
 
 	public void printList() {
-        Node temp = head;
-        while (temp != null) {
-            System.out.println(temp.value);
-            temp = temp.next;
-        }
-    }
+		Node temp = head;
+		while (temp != null) {
+			System.out.println(temp.value);
+			temp = temp.next;
+		}
+	}
 
-    public void getHead() {
-        System.out.println("Head: " + head.value);
-    }
+	public void getHead() {
+		System.out.println("Head: " + head.value);
+	}
 
-    public void getTail() {
-        System.out.println("Tail: " + tail.value);
-    }
+	public void getTail() {
+		System.out.println("Tail: " + tail.value);
+	}
 
-    public void getLength() {
-        System.out.println("Length: " + length);
-    }
+	public void getLength() {
+		System.out.println("Length: " + length);
+	}
 
 	public void append(int value) {
 		Node newNode = new Node(value);
@@ -67,7 +66,7 @@ public class LinkedList {
 	public Node removeLast() {
 		Node nextNode = head;
 		Node toRemoveNode = tail;
-		
+
 		if (length > 1) {
 			while (nextNode.next != tail) {
 				nextNode = nextNode.next;
@@ -97,27 +96,79 @@ public class LinkedList {
 			newNode.next = head;
 			head = newNode;
 		}
-		length++; 
+		length++;
 	}
 
 	public Node removeFirst() {
 		Node toRemoveNode = head;
-		
-		//Check if there is item in the LinkedList
+
+		// Check if there is item in the LinkedList
 		if (head != null) {
 			length--;
-			//Check if there is more than 1 item
+			// Check if there is more than 1 item
 			if (head.next != null) {
 				head = head.next;
+				toRemoveNode.next = null;
 				return toRemoveNode;
-			}
-			else {
+			} else {
 				head = null;
 				tail = null;
 				return toRemoveNode;
 			}
 		}
+
+		return null;
+	}
+
+	public Node get(int index) {
+
+		Node tempNode = head;
+		
+		if (index > 0 || index < length) {
+		
+			for (int i = 0; i < index; i++) {
+				tempNode = tempNode.next;
+			}
+			return tempNode;
+		}
 		
 		return null;
+	}
+
+	public boolean set(int index, int value) {
+		
+		Node tempNode = get(index);
+		if (tempNode != null) {
+			tempNode.value = value;
+			return true;
+		}
+		return false;
+	}
+
+	public boolean insert(int index, int value) {
+		
+		if (index == 0) {
+			prepend(value);
+			length++;
+			return true;
+		}
+		
+		if(index == (length - 1)) {
+			append(value);
+			length++;
+			return true;
+		}
+		
+		if (index > 0 && index < (length-2)) {
+			Node tempNode = get(index - 1);
+			Node newNode = new Node(value);
+			
+			newNode.next = tempNode.next;
+			tempNode.next = newNode;
+			length++;
+			return true;
+		}
+		
+		return false;
 	}
 }
