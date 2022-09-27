@@ -17,6 +17,9 @@ public class Main {
 		myLinkedList.append(3);
 		myLinkedList.append(4);
 		myLinkedList.append(5);
+		System.out.println("\nLinked List:");
+		myLinkedList.printList();
+		System.out.println("\nRemove Last () :");
 		        
 		// (2) Items - Returns 2 Node
 		System.out.println(myLinkedList.removeLast().value);
@@ -59,6 +62,9 @@ public class Main {
         
         System.out.println("\nLinked List:");
         myLinkedList.printList();
+        myLinkedList.getHead();
+        myLinkedList.getTail();
+        myLinkedList.getLength();
         
         System.out.println("\n Get");
         System.out.println(myLinkedList.get(0).value);
@@ -67,7 +73,9 @@ public class Main {
 
         System.out.println("\nLinked List after set():");
         myLinkedList.printList();
-        
+        myLinkedList.getHead();
+        myLinkedList.getTail();
+        myLinkedList.getLength();
 
         System.out.println("LL before insert():");
         myLinkedList.printList();
@@ -86,6 +94,9 @@ public class Main {
 
         System.out.println("\nLL after insert(4) at end:");
         myLinkedList.printList();
+        myLinkedList.getHead();
+        myLinkedList.getTail();
+        myLinkedList.getLength();
         
         System.out.println("\nRemoved node:");
         System.out.println(myLinkedList.remove(2).value);
@@ -98,8 +109,26 @@ public class Main {
         myLinkedList.printList();
 
         System.out.println("\nRemoved node:");
-        System.out.println(myLinkedList.remove(4).value);
+        System.out.println(myLinkedList.remove(3).value);
         System.out.println("LL after remove() of last node:");
+        myLinkedList.printList();
+        myLinkedList.getHead();
+        myLinkedList.getTail();
+        myLinkedList.getLength();
+        
+		myLinkedList.append(3);
+		myLinkedList.append(2);
+        myLinkedList.prepend(1);
+        myLinkedList.prepend(4);
+        
+        System.out.println("\nLinked List:");
+        myLinkedList.printList();
+        myLinkedList.getHead();
+        myLinkedList.getTail();
+        myLinkedList.getLength();
+        
+        System.out.println("LL after reverse()");
+        myLinkedList.reverse();
         myLinkedList.printList();
     }
 

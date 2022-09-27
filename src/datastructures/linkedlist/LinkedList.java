@@ -149,13 +149,11 @@ public class LinkedList {
 		
 		if (index == 0) {
 			prepend(value);
-			length++;
 			return true;
 		}
 		
 		if(index == (length - 1)) {
 			append(value);
-			length++;
 			return true;
 		}
 		
@@ -193,5 +191,23 @@ public class LinkedList {
 		
 		
 		return null;
+	}
+
+	public void reverse() {
+		// flip the head an tail
+		Node temp = head; 
+		head = tail;
+		tail = temp;
+	
+		Node before = null;
+		Node after = temp.next;
+		
+		for (int i = 0; i < length; i++) {
+			after = temp.next;
+			temp.next = before;
+			before = temp;
+			temp = after;
+		}
+		
 	}
 }
