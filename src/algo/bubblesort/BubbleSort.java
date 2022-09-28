@@ -2,7 +2,7 @@ package algo.bubblesort;
 
 import java.util.Arrays;
 
-public class Main {
+public class BubbleSort {
 
 	public static void main(String[] args) {
 
